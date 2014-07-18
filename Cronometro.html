@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head><title>Como hacer un Cronometro</title>
+    <meta charset="utf-8">
+  <link  href="css/crono.css" rel="stylesheet" type="text/css">
+    
+<script type="application/javascript" src="js/jquery-2.1.1.min.js"> // a qui solo cargamos la libreria de jquery</script >
+   
+    <script type="text/javascript">
+    $(function(){
+      var t, cl= $("#crono");
+        var  cad= ""; cont =1;
+        Li = $("#lista")
+        
+      function mostrar(){
+      cl.html((+cl.html()+ 0.1).toFixed(1));// checar si no es i es 1
+                };
+        function arrancar(){
+        t=setInterval(mostrar,100);
+        };
+        
+        function parar(){
+        clearInterval(t);
+            t=undefined;
+            cad += cont+"=>"+cl.html()+"segundos <br>";
+            cont += 1;
+            Li.html(cad);
+            
+        };
+        
+        function cambiar(){
+        if(!t)
+            arrancar();
+            else
+                parar();
+            };
+        
+$("#cambiar").on("click", cambiar);
+        $("#inicializar").on("click", function(){
+        cl.html("0.0");
+            Li.html("");
+            cad=" ";
+            cont=1;
+        });
+      
+      });
+    
+    </script>
+      </head>
+    
+    <body>
+    <h2>Cronómetro</h2>
+      
+
+    
+        
+      <div class="imagen"  >
+           <button type="button" id="cambiar" class="boton">arrancar/parar</button>
+        <button type="button" id="inicializar" class="boton">inicializar</button>
+          <br>
+          <div id="crono">0.0</div>
+          
+         
+        </div>  
+      
+    <div id="lista"></div>
+    </body>
+    
+</html>
